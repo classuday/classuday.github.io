@@ -1,18 +1,38 @@
-function loadProducts() {
-  const gt = document.getElementById("gt-series");
-  products.gt.forEach(p => {
-    gt.innerHTML += `<div class="card" onclick="alert('${p.specs}')">${p.name}</div>`;
-  });
-
-  const num = document.getElementById("number-series");
-  products.number.forEach(p => {
-    num.innerHTML += `<div class="card" onclick="alert('${p.specs}')">${p.name}</div>`;
-  });
-
-  const c = document.getElementById("c-series");
-  products.c.forEach(p => {
-    c.innerHTML += `<div class="card" onclick="alert('${p.specs}')">${p.name}</div>`;
-  });
+function showPopup(title, specs) {
+  document.getElementById("popup-title").innerText = title;
+  document.getElementById("popup-specs").innerText = specs;
+  document.getElementById("popup").classList.remove("hidden");
 }
+
+function closePopup() {
+  document.getElementById("popup").classList.add("hidden");
+}
+
+function loadProducts() {
+  const map = {
+    gt: "gt-series",
+    number: "number-series",
+    c: "c-series"
+  };
+
+  for (let key in products) {
+    const box = document.getElementById(map[key]);
+    products[key].forEach(p => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerText = p.name;
+      div.dataset.name = p.name.toLowerCase();
+      div.onclick = () => showPopup(p.name, p.specs);
+      box.appendChild(div);
+    });
+  }
+}
+
+document.getElementById("search").addEventListener("keyup", function () {
+  const val = this.value.toLowerCase();
+  document.querySelectorAll(".card").forEach(card => {
+    card.style.display = card.dataset.name.includes(val) ? "block" : "none";
+  });
+});
 
 loadProducts();
