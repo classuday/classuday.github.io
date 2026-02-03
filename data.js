@@ -8,7 +8,7 @@ const products = {
   number: [
     {
       name: "realme 12 Pro+",
-      specs: "5G | 200MP Camera | Curved Display"
+      specs: "5G | 200MP Camera | Curved AMOLED"
     }
   ],
   c: [
