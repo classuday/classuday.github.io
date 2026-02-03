@@ -8,15 +8,22 @@ function closePopup() {
   document.getElementById("popup").classList.add("hidden");
 }
 
-function loadProducts() {
-  const map = {
-    gt: "gt-series",
-    number: "number-series",
-    c: "c-series"
-  };
+const map = {
+  gt: "gt-series",
+  number: "number-series",
+  c: "c-series",
+  narzo: "narzo-series",
+  p: "p-series",
+  pad: "pad-series",
+  watch: "watch-series",
+  buds: "buds-series"
+};
 
+function loadProducts() {
   for (let key in products) {
     const box = document.getElementById(map[key]);
+    if (!box) continue;
+
     products[key].forEach(p => {
       const div = document.createElement("div");
       div.className = "card";
