@@ -81,3 +81,7 @@ form input, textarea, button {
 .hidden {
   display: none;
 }
+.brand {
+  text-transform: lowercase;
+  font-weight: 700;
+}
