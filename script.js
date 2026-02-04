@@ -27,7 +27,10 @@ function loadProducts() {
     products[key].forEach(p => {
       const div = document.createElement("div");
       div.className = "card";
-      div.innerText = p.name;
+      div.innerHTML = `
+  <img src="${p.image}" alt="${p.name}">
+  <p>${p.name}</p>
+`;
       div.dataset.name = p.name.toLowerCase();
       div.onclick = () => showPopup(p.name, p.specs);
       box.appendChild(div);
